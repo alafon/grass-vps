@@ -129,15 +129,29 @@ const initialize = (ipAddress, userId) => {
 
   const authenticate = (params) => {
     const browser_id = uuidv5(ipAddress, NAMESPACE);
+    //const browser_id = uuidv5(ipAddress, `60ac84e4-f3c9-4d89-8b2d-e66f4aad1667`);
     const deviceType = `vps, ${os.platform}, ${os.release()}`;
+    //const browser_id = `60ac84e4-f3c9-4d89-8b2d-e66f4aad1667`;
+    //const deviceType = `extension`;
 
     const authenticationResponse = {
       browser_id,
-      user_id: userId,
+      user_id: USER_IDS,
       user_agent: USER_AGENT,
       timestamp: getUnixTimestamp(),
       device_type: deviceType,
+      //version: "2.2.0",
     };
+
+    // from extension code
+    /*const authenticationResponse = {
+      browser_id,
+      user_id: null,
+      user_agent: navigator.userAgent,
+      timestamp: getUnixTimestamp(),
+      device_type: "extension",
+      version,
+    };*/
 
     return authenticationResponse;
   };
